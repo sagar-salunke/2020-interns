@@ -1,22 +1,41 @@
 <html>
 <head>
-<script>
-<script type="text/javascript" src="data.json"></script>
-<script type="text/javascript" src="javascrip.js"></script>
+<script type="text/javascript" src="C:\Users\SAGAR\Desktop\data.js">
 var mydata = JSON.parse(data);
 document.getElementById("get_the_file").addEventListener("change", function() {
-  var file_to_read = document.getElementById("get_the_file").files[0];
-  var fileread = new FileReader();
-  fileread.onload = function(e) {
-    var content = e.target.result;
-    // console.log(content);
-    var intern = JSON.parse(content); // Array of Objects.
-    console.log(intern); // You can index every object
+var file_to_read = document.getElementById("get_the_file").files[0];
+var fileread = new FileReader();
+fileread.onload = function(e) {
+var content = e.target.result;
+console.log(content);
+var intern = JSON.parse(content); // Array of Objects.
+console.log(intern); // You can index every object
   };
   fileread.readAsText(file_to_read);
+});
+let json = require('/Users/Documents/workspace/test.json');
+console.log(json, 'the json obj');
+function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
+    }
+    rawFile.send(null);
+}
+
+//usage:
+readTextFile("/Users/Documents/workspace/test.json", function(text){
+    var data = JSON.parse(text);
+    console.log(data);
 });
 </script>
 <title>
 <title>
+<body bgcolor="red">
+</body>
 </head>
 </html>
